@@ -197,8 +197,48 @@ Given the nature of scheduled transactions, protocol needs to handle the executi
 
   Running the web\footnote{\url{https://app.chronologic.network}} and desktop\footnote{\url{https://github.com/chronologic/eth-alarm-clock-dapp/releases}} version of TimeNode software requires users to prove the ownership of 333 DAY\footnote{\url{https://etherscan.io/token/0xE814aeE960a85208C3dB542C53E7D4a6C8D5f60F}} tokens. The required amount can be hold on any Ethereum account controlled by the TimeNode operator.
 
-  %\chapter{Next generation scheduling protocol}
+  \chapter{Chronos - Next generation scheduling protocol}
+  \section{Conditional scheduling}
 
+  Time-based scheduling is a very powerful idea, but it’s not capable of handling \texttt{if-this-then-that} type of scheduling. The idea to explore this type of scheduling was sparked by discussions with teams and projects in the Ethereum space about potential use-cases for the Ethereum Alarm Clock. Some of them were based on a state change, rather than a specific time period.
+
+  Let’s take a closer look at the example on how we could implement decentralized stop-loss functionality using the Ethereum Alarm Clock. One of the possible solutions for the problem that could be implemented can be defined as follows:
+
+  \begin{itemize}
+    \item Create a smart contact calledStopLoss with execute function that is going to check a decentralized exchange for your current position and will place the sell order if certain conditions are met
+    \item Use the Ethereum Alarm Clock protocol to create a scheduled transaction with recurring execution for \texttt{execute} for e.g every 5min
+  \end{itemize}
+
+  While this solution works, it would generate an enormously high cost for users, given 500000gas the daily cost is approximately
+  \[
+    ~500 000 gas \times 12 \times 24 \approx \$130\footnote{Given 1ETH = 221USD and GasPrice=4.1GWei}
+  \]
+  
+  making this it not feasible.
+
+  In general, the problem with this approach is that every trigger costs gas regardless of whether it succeeds or not. A much more efficient solution for this problem would be to have a scheduler that allows one to store conditions directly in the contract and allows the execution only when these conditions are met.
+  
+  Looking through that lens we came to the conclusion that time-based scheduling is just a special case of conditional scheduling. The conditions are: \texttt{if time then} or \texttt{if block then}. TimeNodes (the off-chain executors) are checking time and block conditions before the execution (by reading them from the smart contract) which means that they attempt the sending of transactions only when those conditions are met. Instead of defining time or block we delegate this check to external contracts that for e.g has method \texttt{inExecutionWindow(uint windowStart, uint windowSize) returns (bool)} which check whether \texttt{block.number} if within the given window.
+
+  \section{DAY token staking}
+
+  Ethereum Alarm Clock protocol is using claiming process in order to improve cryptoeconomics by reducing the collision among the TimeNodes. Chronos protocol will take different approach to solve this problem, we are designing claiming mechanism based on DAY token staking.
+
+  Staking model assumes that DAY tokens acts as an collateral for claiming actions and align the incentives for execution. Any commitment by the TimeNode would have to be backed by amount of DAY tokens, lack of execution will result in token slashing. Wether complete stake or partial slashing, it is still to be seen.
+
+  The Priority Queue based approach to stake can be described as follows:
+
+  \begin{itemize}
+    \item Client running TimeNode software must first register their intent to be a claiming TimeNode on the blockchain by sending a transaction containing some amount of tokens to a contract. Inside of this transaction, the TimeNode specifies its preferences for what kinds of transactions it wants to execute. These preferences include how big of a bounty is attached to the \textbf{ScheduledTransaction} and when the execution window starts.
+    \item Each time a TimeNode enters the \texttt{Claiming Queue} the entry with the highest amount staked is moved to the top of the queue while all other entries are sorted downward.
+    \item When a user wants to schedule a transaction, they send a transaction to the Chronos \textbf{Scheduler} contract containing the data of the transaction they would like executed at a later time (or when later conditionals return true).
+    \item The next TimeNode on the \texttt{Claiming Queue} which fits the preferences of that TimeNode will be popped off the queue and “assigned” to that transaction.
+    \item Upon execution time, that TimeNode which was assigned has the exclusive rights to send the \texttt{execute} transaction and the other TimeNodes will not even try.
+  \end{itemize}
+
+  \chapter{Second Layer Execution Markets}
+  \section{Delegated execution}
+  
   \begin{appendices}
     \chapter{The on-chain claiming mechanism economics}\label{appendix}
     \section{Claiming mechanism}
