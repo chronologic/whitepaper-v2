@@ -117,18 +117,18 @@
   \subsection{Gas price}
   The Ethereum network uses the concept of gas as a unit of measuring the computational work performed over the network. Every transaction broadcasted to the network sets the gas limit and the gas price. Gas limit describes the maximum amount of gas allowed to be consumed by the transaction, gas price describes the amount of ether (ETH) you are willing to pay for each unit of gas.
 
-  While setting the gas limit is in most cases very straightforward and automatic, setting the correct gas price is not a trivial task. Gas price determines the time between broadcasting and block inclusion, depends on current network capacity. We observed many spikes in the gas price due to popular ICOs\footnote{\url{https://en.wikipedia.org/wiki/Initial_coin_offering}}, CryptoKitties or last FCoin on-chain voting.
-Given the nature of scheduled transactions, protocol needs to handle the execution using predicted gas price. The most important characteristics are:
+  While setting the gas limit is in most cases very straightforward and automatic, setting the correct gas price is not a trivial task. Gas price determines the time between broadcasting and block inclusion, and depends on current network capacity. We observed many spikes in the gas price due to popular ICOs\footnote{\url{https://en.wikipedia.org/wiki/Initial_coin_offering}}, CryptoKitties or last FCoin on-chain voting.
+Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol needs to handle the execution using a predicted gas price. The most important characteristics are:
   \begin{itemize}
     \item execution prioritization
     \item TimeNode withholding protection
   \end{itemize}
 
-  There are three possible solution for this problem, lets analyze each of them separately:
+  There are three possible solution for this problem. Let's analyze each of them separately:
 
   \begin{enumerate}
     \item
-      Fixed gas price - Allows setting the gas price that has to be used by TimeNode for execution, declared gas price is reimbursed by the scheduler
+      \textbf{\textit{Fixed gas price}} - Allows setting the exact gas price that has to be used by TimeNode for execution, declared gas price is reimbursed by the scheduler.
 
       Pros:
       \begin{itemize}
@@ -142,7 +142,7 @@ Given the nature of scheduled transactions, protocol needs to handle the executi
       \end{itemize}
 
     \item
-      Range gas price - Allows setting minimum and maximum gas price by the scheduler, the maximum gas price is reimbursed, any gas price used by the TimeNode between min and max (spot price) will allow the split of the remaining budget between the scheduler and the TimeNode.
+      \textbf{\textit{Range gas price}} - Allows setting minimum and maximum gas price by the scheduler, the maximum gas price is reimbursed, any gas price used by the TimeNode between min and max (spot price) will allow the split of the remaining budget between the scheduler and the TimeNode.
 
       \textit{For e.g, the scheduler sets the range from 20gwei to 100gwei and thus locks enough funds to cover 100gwei * gas limit. TimeNode is incentivized to pick a good price between 20 and 100, let’s say 50 as remaining 50 is split, making TimeNode earn extra 25.}
 
@@ -158,7 +158,7 @@ Given the nature of scheduled transactions, protocol needs to handle the executi
       \end{itemize}
 
     \item
-      Minimum gas price - Allows setting the minimum gas price by the scheduler, the minimum gas price is reimbursed, higher gas prices covered by TimeNode (effectively reducing the reward for execution)
+      \textbf{\textit{Minimum gas price}} - Allows setting the minimum gas price by the scheduler, the minimum gas price is reimbursed, higher gas prices covered by TimeNode (effectively reducing the reward for execution)
 
       Pros:
       \begin{itemize}
@@ -173,11 +173,11 @@ Given the nature of scheduled transactions, protocol needs to handle the executi
 
   In order to pick the right solution we need understand the Ethereum Alarm Clock execution process. There are 3 different time windows used for:
   \begin{itemize}
-    \item pre-execution claiming process: where TimeNodes are bidding on reservation for execution
-    \item reserved execution: time period for TimeNode that claimed transaction
-    \item execution: free for all execution, when TimeNode that claimed missed the execution or no claiming happened
+    \item \textbf{\textit{Pre-execution claiming process}}: where TimeNodes are bidding on reservation for execution
+    \item \textbf{\textit{Reserved execution}}: time period for TimeNode that claimed transaction
+    \item \textbf{\textit{Execution}}: free for all execution, when TimeNode that claimed missed the execution or no claiming happened
   \end{itemize}
-  Minimum gas price is the best option for both reserved execution and execution as it allows TimeNodes to control and pick the gas price that best fits their own profit model.
+  Minimum gas price is the best option for both reserved execution and execution, as it allows the TimeNodes to control and pick the gas price that best fits their own profit model.
 
   \subsection{Account abstraction}
   For cases where the address of the sender has to be known upfront and given the Ethereum Alarm Clock architecture where each scheduled transaction is represented by separate smart contract and have unique Ethereum address there is a need to use a proxy wallet.
