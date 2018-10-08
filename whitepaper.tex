@@ -12,14 +12,28 @@
   \begin{document}
   \maketitle
   \begin{abstract}
-    Current generation blockchains lack the crucial time-based functionality like transaction scheduling. The proposed paper discusses potential implementable solutions and challenges for enabling such a functionality.
+    The current genration of blockchain protocols are lacking the crucial temporal functionality of transaction
+    scheduling. We discuss in the following paper the potential solutions and challenges for implementing such a
+    functionality on the Ethereum blockchain. (TODO add more)
   \end{abstract}
   \newpage
   \tableofcontents
   \newpage
   \chapter{Introduction}
+
   Scheduling is a feature that is native to the modern financial world.
-  We schedule our routine bank transfers and bill payments; whenever we know ahead of time when a payment should go through, we set it up to pay automatically instead of waiting for the exact time and date. Financial transactions are increasingly moving to the self-sovereign and trustless world of cryptocurrencies. As more volume is moved on networks like Ethereum\footnote{\url{https://www.ethereum.org/}} daily, there is more expectation of the foundational tooling that fiat world provides. Users expect scheduling as a feature from the Ethereum ecosystem because they have learned to rely on it in their everyday lives. In fact, scheduling calls on Ethereum is more powerful than scheduling movements of money in the fiat world -- users can now schedule smart contracts execution. They have access to much more complex logic. We also identify the tooling gap that exists for developers working on the Ethereum stack, used to cron jobs on Unix. Contrary to intuition, scheduling calls on a decentralized peer-to-peer blockchain is not a trivial problem to solve.
+  We schedule our routine bank transfers and bill payments; as responsible consumers 
+  we know ahead of time when a payment should go through and we set it up to pay automatically
+  instead of waiting for the exact time and date. As financial transactions are increasingly moving 
+  to the self-sovereign and trustless world of cryptocurrencies, we see more volume is moved on networks 
+  like Ethereum\footnote{\url{https://www.ethereum.org/}}. Users have more expectations about the foundational
+  tooling which is similar to what the fiat world provides. Most importantly, scheduling is a feature  that 
+  users expect from the Ethereum ecosystem since they have learned to rely on it so thoroughly in their everyday lives.
+  We predict that scheduling calls on Ethereum will be more powerful than scheduling in the fiat world. Protocols such as
+  the Ethereum Alarm Clock unlock the potential for  users to schedule smart contracts execution. Regular users now have
+  access to much more complex logic. We introduce an experience similar to what developers are used to using
+  cron jobs on Unix. However (and contrary to intuition) scheduling calls on a decentralized peer-to-peer
+  blockchain is not a trivial problem to solve.
 
   There are many reasons why a person would want to schedule smart contract calls. The most facile of use cases involves the simple scheduling of value transfers -- the movement of ether or an ERC20 token from one address to another. With the future indoctrination of concepts such as DAOs\footnote{\url{https://en.wikipedia.org/wiki/Decentralized_autonomous_organization}}, the world will start to see smart contracts employed in the use of organizational governance and other high stakes uses. Users may want to schedule a vote to a DAO for instance that will determine the zoning of their neighborhood that they live in. Additionally, developers may invent new use cases in which scheduling is used under the hood, without the user even realizing the complexity behind the application that they are interacting with. Blockchains are the new software platform. People who set up and maintain software environments use cron\footnote{\url{https://en.wikipedia.org/wiki/Cron}} to schedule jobs (commands or shell scripts) to run periodically at fixed times, dates, or intervals. There needs to be a cron for the world of Ethereum.
   \section{Centralized Scheduling}
