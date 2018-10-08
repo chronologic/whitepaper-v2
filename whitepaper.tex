@@ -29,7 +29,7 @@
   \chapter{Ethereum Alarm Clock}
   In November 2017, nearly one year after the DDoS attacks that metaphorically threw a ratchet in the Ethereum Alarm Clock’s gears, developers from the ChronoLogic team began to work on and reboot the Ethereum Alarm Clock protocol. After about nine months of work including updating the core smart contracts, rewriting the test suite in JavaScript for the Truffle framework, building developer libraries and constructing a new TimeNode client in TypeScript, and performing numerous internal audits and an external audit with a notable member of the community, the ChronoLogic team deployed the 1.0.0 stable release of the Ethereum Alarm Clock smart contracts on August 24, 2018. The following information will discuss the architecture, analyze the cryptoeconomic incentives, and enumerate on some of the limitations found in the stable release.
   \section{Architecture}
-  The Ethereum Alarm Clock architecture is best described in two symbiotic and differential parts-- the smart contracts which are deployed to the Ethereum main chain and operate trustlessly and the TimeNode network, which are off-chain execution agents in charge of handling the logic of executions.
+  The Ethereum Alarm Clock architecture is best described in two symbiotic and differential components. The first component of the Ethereum Alarm Clock architecture are the smart contracts. They are deployed to the Ethereum main chain and operate trustlessly. The second component is the TimeNode network. TimeNodes are off-chain execution agents in charge of handling the logic of executions.
   \begin{figure}[h]
   \includegraphics[width=\textwidth]{diagram6}
   \caption{Ethereum Alarm Clock architecture overview}
