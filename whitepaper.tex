@@ -205,20 +205,20 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
   Let’s take a closer look at the example on how we could implement decentralized stop-loss functionality using the Ethereum Alarm Clock. One of the possible solutions for the problem that could be implemented can be defined as follows:
 
   \begin{itemize}
-    \item Create a smart contact called StopLoss with execute function that is going to check a decentralized exchange for your current position and will place the sell order if certain conditions are met
-    \item Use the Ethereum Alarm Clock protocol to create a scheduled transaction with recurring execution for \texttt{execute} for e.g every 5min
+    \item Create a smart contact called \textit{StopLoss} with an \texttt{execute} function that is going to check a decentralized exchange for your current position and will place the sell order if certain conditions are met
+    \item Use the Ethereum Alarm Clock protocol to create a scheduled transaction with a recurring execution for \texttt{execute} -  for e.g every 5min
   \end{itemize}
 
-  While this solution works, it would generate an enormously high cost for users, given 500000gas the daily cost is approximately
+  While this solution works, it would generate an enormously high cost for the users. Given 500000 gas, the daily cost is approximately
   \[
     ~500 000 gas \times 12 \times 24 \approx \$130\footnote{Given 1ETH = 221USD and GasPrice=4.1GWei}
   \]
 
-  making this it not feasible.
+  making this unfeasible.
 
   In general, the problem with this approach is that every trigger costs gas regardless of whether it succeeds or not. A much more efficient solution for this problem would be to have a scheduler that allows one to store conditions directly in the contract and allows the execution only when these conditions are met.
 
-  Looking through that lens we came to the conclusion that time-based scheduling is just a special case of conditional scheduling. The conditions are: \texttt{if time then} or \texttt{if block then}. TimeNodes (the off-chain executors) are checking time and block conditions before the execution (by reading them from the smart contract) which means that they attempt the sending of transactions only when those conditions are met. Instead of defining time or block we delegate this check to external contracts that for e.g has method \texttt{inExecutionWindow(uint windowStart, uint windowSize) returns (bool)} which check whether \texttt{block.number} if within the given window.
+  Looking through that lens, we came to the conclusion that time-based scheduling is just a special case of conditional scheduling. The conditions are: \texttt{if time then} or \texttt{if block then}. TimeNodes (the off-chain executors) are checking time and block conditions before the execution (by reading them from the smart contract) which means that they attempt the sending of transactions only when those conditions are met. Instead of defining \textit{time} or \textit{block}, we delegate this check to external contracts that, for e.g has method \texttt{inExecutionWindow(uint windowStart, uint windowSize) returns (bool)} which checks whether the \texttt{block.number} is within the given window.
 
   \section{DAY token staking}
 
