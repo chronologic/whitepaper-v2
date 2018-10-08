@@ -291,17 +291,17 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
 
   \subsection{Claiming}
   \begin{itemize}
-  \item can happen before execution
-  \item every node has the same chance to successfully claim $Tx$
-  \item claiming requires a $Deposit$ to be locked by claimant
+  \item Can happen before execution
+  \item Every node has the same chance to successfully claim $Tx$
+  \item Claiming requires a $Deposit$ to be locked by claimant
   \item $Deposit$ is lost by claimant when execution won't happen within \textit{exclusive execution window}
-  \item every node can fail on claiming when $Tx$ was already claimed
-  \item claiming requires sending transaction that has cost described as $C_{c}$ when success and $C_{f}$ when failure
-  \item payment modifier $P_{mod}(t)=\begin{cases}
+  \item Every node can fail on claiming when $Tx$ was already claimed
+  \item Claiming requires sending a transaction that has a cost described as $C_{c}$ when successful and $C_{f}$ when unsuccessful
+  \item Payment modifier $P_{mod}(t)=\begin{cases}
   0 & \quad \text{at beginning of claiming window}\\
   1 & \quad \text{at end of claiming window}
   \end{cases}$
-  \item claiming is optional
+  \item Claiming is optional
   \end{itemize}
 
   \subsection{Execution}
