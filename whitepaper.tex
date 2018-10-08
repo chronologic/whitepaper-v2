@@ -306,10 +306,10 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
 
   \subsection{Execution}
   \begin{itemize}
-  \item successful execution has reward described as $TimeBounty$
-  \item execution cost is reimbursed by the scheduler when successful
-  \item execution cost has cost described as $C_{e}$ when not successful
-  \item $Deposit$ locked by the claimant can be acquired by a node when the claimant failed to execute
+  \item Successful execution has a reward described as $TimeBounty$
+  \item Execution cost is reimbursed by the scheduler when successful
+  \item Execution cost has cost described as $C_{e}$ when unsuccessful
+  \item $Deposit$ locked by the claimant can be acquired by a node when the claimant failed to execute $Tx$
   \end{itemize}
 
   \subsection{Expected payout definition}
@@ -320,13 +320,13 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
   where
   \\
 
-  $P_{s}$ is expected payout after successful claiming and execution
+  $P_{s}$ is the expected payout after a successful claim and execution
   \\
 
-  $P_{f}$ is expected payout after successful claiming and missed execution
+  $P_{f}$ is the expected payout after a successful claim but missed execution
   \\
 
-  $P_{nf}$ is expected payout after other node losing the deposit
+  $P_{nf}$ is the expected payout after another node loses its deposit
   \\
 
   \subsubsection{Network with $n=1$ nodes}
@@ -352,7 +352,7 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
   P_{nf}=\frac{TimeBounty+Deposit}{n} - (n-1) \times C_{Tx}
   \]
 
-  In order to improve the cost of failing transactions let's introduce a mechanism $X$ that prevents sending the transaction that will fail, the accuracy of mechanism $X$ is defined as $A_{X} \in [0;1]$
+  In order to improve the cost of failing transactions, let's introduce a mechanism $X$ that prevents sending the transaction that will fail, the accuracy of mechanism $X$ is defined as $A_{X} \in [0;1]$
 
   \[
   P_{s}(A_{X}, P_{mod})=\frac{P_{mod} \times TimeBounty-C_{C}}{n} - (1-A_{X}) \times (n-1) \times C_{Tx}
