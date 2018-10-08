@@ -180,15 +180,15 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
   Minimum gas price is the best option for both reserved execution and execution, as it allows the TimeNodes to control and pick the gas price that best fits their own profit model.
 
   \subsection{Account abstraction}
-  For cases where the address of the sender has to be known upfront and given the Ethereum Alarm Clock architecture where each scheduled transaction is represented by separate smart contract and have unique Ethereum address there is a need to use a proxy wallet.
-  Proxy wallet address will be seen as msg.sender in destination contract/account. An example procedure off scheduling transaction using proxy wallet could be described as follows:
+  For cases where the address of the sender has to be known upfront, and given the Ethereum Alarm Clock architecture where each scheduled transaction is represented by separate smart contract with a unique Ethereum address, there is a need to use a proxy wallet.
+  The address of the proxy wallet will be seen as \textit{msg.sender} in the destination contract/account. An example procedure of scheduling a transaction using a proxy wallet could be described as follows:
   \begin{enumerate}
-    \item create schedule request such as the destination is set to proxy wallet
-    \item send scheduling request using proxy wallet so it becomes the owner of the request
-    \item whitelist the scheduled request in the proxy wallet so it can be relayed
+    \item Create a schedule request such that the destination is set to the proxy wallet
+    \item Send the scheduling request using a proxy wallet so that it becomes the owner of the request
+    \item Whitelist the scheduled request in the proxy wallet so it can be relayed
   \end{enumerate}
 
-  The need for such a workaround will not be necessary when native account abstraction \footnote{https://github.com/ethereum/EIPs/issues/859} will be available on Ethereum network.
+  The need for such a workaround will not be necessary when native account abstraction \footnote{https://github.com/ethereum/EIPs/issues/859} will be available on the Ethereum network.
 
   \subsection{Gas cost}
   Using smart contract storage for keeping data with conditions and parameters for scheduled transaction comes with a cost. Currently each scheduled transaction costs approximately 500 000 gas. Even though the total cost in USD is below \$1\footnote{Given current 8.2Gwei gas price} the “premium” for scheduling is over 20x comparing to regular ETH transfers.
