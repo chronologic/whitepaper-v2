@@ -35,7 +35,7 @@
   \caption{Ethereum Alarm Clock architecture overview}
   \end{figure}
   \subsection{Smart Contracts}
-  The smart contracts of the Ethereum Alarm Clock can be thought of as consisting mainly of three parts: \textbf{RequestFactory}, \textbf{Schedulers} (further divided into the TimestampScheduler and BlockScheduler), and \textbf{TransactionRequestCore}. Within these three main sections of the architecture are numerous libraries that contain various pieces of the core logic and functionality. There are nine library contracts, two top-level scheduler contracts, on contract for \textbf{RequestFactory} and one for \textbf{TransactionRequestCore}, adding in Zeppelin’s SafeMath and Ownable brings the total to 15 smart contracts which compose the entire Ethereum Alarm Clock architecture.
+  The smart contracts of the Ethereum Alarm Clock can be thought of as consisting mainly of three parts: \textbf{RequestFactory}, \textbf{Schedulers} (further divided into the TimestampScheduler and BlockScheduler), and \textbf{TransactionRequestCore}. Within these three main sections of the architecture are numerous libraries that contain various pieces of the core logic and functionality. There are nine library contracts, two top-level scheduler contracts, on contract for \textbf{RequestFactory} and one for \textbf{TransactionRequestCore}, adding in Zeppelin’s SafeMath and Ownable, brings the total to 15 smart contracts which make the entire Ethereum Alarm Clock architecture.
 
   \begin{figure}[h]
     \includegraphics[width=\textwidth]{contracts}
