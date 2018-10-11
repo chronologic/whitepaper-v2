@@ -197,6 +197,12 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
 
   A potential business model for the Ethereum Alarm Clock protocol is based on the fee that can be enabled for each transaction. The architecture of the protocol allows deployment of many \textbf{Schedulers} that can be used by specific 3rd party wallet. The amount of fee can be set specifically per \textbf{Scheduler}.
 
+  \section{Multi-network protocol}
+
+  Ethereum Alarm Clock can be deployed on any EVM compatible Blockchain like Ethereum Classic\footnote{\url{https://ethereumclassic.org/}} or RSK\footnote{\url{https://www.rsk.co/}}. Multi-network protocol can be handled by TimeNodes by listening to those networks and providing execution. The wallets of those TimeNodes would have to keep a native cryptocurrency used by those blockchains in order to cover the transaction fees.
+  
+  Multi-network deployment would expand the scheduling user base beyond the Ethereum blockchain.
+
   \section{DAY token}
 
   Running the web\footnote{\url{https://app.chronologic.network}} and desktop\footnote{\url{https://github.com/chronologic/eth-alarm-clock-dapp/releases}} versions of the TimeNode software requires users to prove the ownership of 333 DAY\footnote{\url{https://etherscan.io/token/0xE814aeE960a85208C3dB542C53E7D4a6C8D5f60F}} tokens. The required amount can be held on any Ethereum account controlled by the TimeNode operator. Running the client using CLI tool\footnote{\url{https://github.com/ethereum-alarm-clock/cli}} does not require DAY tokens, however TimeNode is by far superior client comparing to CLI, especially in the area of analytics and ease of use.
