@@ -8,7 +8,7 @@
   \usepackage{url}
   \title{Temporal Innovation on the Blockchain}
   \author{ChronoLogic}
-  \date{\today\\v0.9}
+  \date{\today\\v2}
   \begin{document}
   \maketitle
   \begin{abstract}
@@ -193,9 +193,19 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
   \subsection{Gas cost}
   Using the storage of a smart contract for keeping the data with conditions and parameters for a scheduled transaction comes with a cost. Currently each scheduled transaction costs approximately 500 000 gas. Even though the total cost in USD is below \$1\footnote{Given current 8.2Gwei gas price}, the “premium” for scheduling is over 20x compared to regular ETH transfers.
 
+  \section{Protocol fees}
+
+  A potential business model for the Ethereum Alarm Clock protocol is based on the fee that can be enabled for each transaction. The architecture of the protocol allows deployment of many \textbf{Schedulers} that can be used by specific 3rd party wallets. Each \textbf{Scheduler} can be deployed with a different fee setting.
+
+  \section{Multi-network protocol}
+
+  Ethereum Alarm Clock can be deployed to any EVM compatible Blockchain like Ethereum Classic\footnote{\url{https://ethereumclassic.org/}} or RSK\footnote{\url{https://www.rsk.co/}}. Multi-network protocol can be handled by TimeNodes by listening to those networks and providing execution. The wallets of those TimeNodes would have to keep a native cryptocurrency used by those blockchains in order to cover the transaction fees.
+  
+  Multi-network deployment would expand the scheduling user base beyond the Ethereum blockchain.
+
   \section{DAY token}
 
-  Running the web\footnote{\url{https://app.chronologic.network}} and desktop\footnote{\url{https://github.com/chronologic/eth-alarm-clock-dapp/releases}} versions of the TimeNode software requires users to prove the ownership of 333 DAY\footnote{\url{https://etherscan.io/token/0xE814aeE960a85208C3dB542C53E7D4a6C8D5f60F}} tokens. The required amount can be held on any Ethereum account controlled by the TimeNode operator.
+  Running the web\footnote{\url{https://app.chronologic.network}} and desktop\footnote{\url{https://github.com/chronologic/eth-alarm-clock-dapp/releases}} versions of the TimeNode software requires users to prove the ownership of 333 DAY\footnote{\url{https://etherscan.io/token/0xE814aeE960a85208C3dB542C53E7D4a6C8D5f60F}} tokens. The required amount can be held on any Ethereum account controlled by the TimeNode operator. Running the client using CLI tool\footnote{\url{https://github.com/ethereum-alarm-clock/cli}} does not require DAY tokens, however, when compared to the CLI, the TimeNode is superior in its analytics and ease of use.
 
   \chapter{Chronos - Next generation scheduling protocol}
   \section{Conditional scheduling}
@@ -222,11 +232,11 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
 
   \section{DAY token staking}
 
-  Ethereum Alarm Clock protocol is using a claiming process in order to improve cryptoeconomics by reducing collisions amongst the TimeNodes. Chronos protocol will take a different approach to solve this problem - implementing a claiming mechanism based on DAY token staking.
+  Ethereum Alarm Clock protocol is using a claiming process in order to improve cryptoeconomics by reducing collisions amongst the TimeNodes. For Chronos protocol, a different approach to solve this problem is taken into account - implementing a claiming mechanism based on DAY token staking.
 
-  Staking model assumes that DAY tokens act as collateral for claiming actions and align the incentives for execution. Any commitment by the TimeNode would have to be backed by an amount of DAY tokens. Lack of execution will result in token slashing. Whether complete stake or partial slashing, it is still to be seen.
+  Hypothetical staking model assumes that DAY tokens act as collateral for claiming actions and align the incentives for execution. Any commitment by the TimeNode would have to be backed by an amount of DAY tokens. Lack of execution will result in token slashing. Whether complete stake or partial slashing, it is still to be seen.
 
-  The Priority Queue based approach to stake can be described as follows:
+  An example staking model called \textbf{The Priority Queue} can be described as follows:
 
   \begin{itemize}
     \item Client running TimeNode software must first register their intent to be a claiming TimeNode on the blockchain by sending a transaction containing some amount of tokens to a contract. Inside of this transaction, the TimeNode specifies its preferences for what kinds of transactions it wants to execute. These preferences include how big of a bounty is attached to the \textbf{ScheduledTransaction} and when the execution window starts.
@@ -276,6 +286,8 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
   \end{itemize}
 
   \section{TimeNode - beyond the scheduling}
+
+  TimeNode is one of very first working implementation of the delegated execution pattern and could potentially serve as a blueprint for other implementations or be generalized to handle other cases beyond scheduling. 
 
   \begin{appendices}
     \chapter{The on-chain claiming mechanism economics}\label{appendix}
