@@ -195,11 +195,11 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
 
   \section{Protocol fees}
 
-  A potential business model for the Ethereum Alarm Clock protocol is based on the fee that can be enabled for each transaction. The architecture of the protocol allows deployment of many \textbf{Schedulers} that can be used by specific 3rd party wallet. The amount of fee can be set specifically per \textbf{Scheduler}.
+  A potential business model for the Ethereum Alarm Clock protocol is based on the fee that can be enabled for each transaction. The architecture of the protocol allows deployment of many \textbf{Schedulers} that can be used by specific 3rd party wallets. Each \textbf{Scheduler} can be deployed with a different fee setting.
 
   \section{Multi-network protocol}
 
-  Ethereum Alarm Clock can be deployed on any EVM compatible Blockchain like Ethereum Classic\footnote{\url{https://ethereumclassic.org/}} or RSK\footnote{\url{https://www.rsk.co/}}. Multi-network protocol can be handled by TimeNodes by listening to those networks and providing execution. The wallets of those TimeNodes would have to keep a native cryptocurrency used by those blockchains in order to cover the transaction fees.
+  Ethereum Alarm Clock can be deployed to any EVM compatible Blockchain like Ethereum Classic\footnote{\url{https://ethereumclassic.org/}} or RSK\footnote{\url{https://www.rsk.co/}}. Multi-network protocol can be handled by TimeNodes by listening to those networks and providing execution. The wallets of those TimeNodes would have to keep a native cryptocurrency used by those blockchains in order to cover the transaction fees.
   
   Multi-network deployment would expand the scheduling user base beyond the Ethereum blockchain.
 
@@ -232,7 +232,7 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
 
   \section{DAY token staking}
 
-  Ethereum Alarm Clock protocol is using a claiming process in order to improve cryptoeconomics by reducing collisions amongst the TimeNodes. For Chronos protocol a different approach to solve this problem is taken into account - implementing a claiming mechanism based on DAY token staking.
+  Ethereum Alarm Clock protocol is using a claiming process in order to improve cryptoeconomics by reducing collisions amongst the TimeNodes. For Chronos protocol, a different approach to solve this problem is taken into account - implementing a claiming mechanism based on DAY token staking.
 
   Hypothetical staking model assumes that DAY tokens act as a collateral for claiming actions and align the incentives for execution. Any commitment by the TimeNode would have to be backed by an amount of DAY tokens. Lack of execution will result in token slashing. Whether complete stake or partial slashing, it is still to be seen.
 
@@ -287,7 +287,7 @@ Given the nature of scheduled transactions, the Ethereum Alarm Clock protocol ne
 
   \section{TimeNode - beyond the scheduling}
 
-  TimeNode is the one of very first working implementation of delegated execution pattern and could potentially serve as a blueprint for other implementations or be generalized to handle other cases beyond scheduling. 
+  TimeNode is the one of very first working implementation of the delegated execution pattern and could potentially serve as a blueprint for other implementations or be generalized to handle other cases beyond scheduling. 
 
   \begin{appendices}
     \chapter{The on-chain claiming mechanism economics}\label{appendix}
